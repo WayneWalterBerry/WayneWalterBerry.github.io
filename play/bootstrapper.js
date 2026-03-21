@@ -30,6 +30,15 @@
         appendOutput(message, 'output-line error-line');
     }
 
+    // --- Build version (embedded at build time) ---
+    const BUILD_TIMESTAMP = "2026-03-21 10:28";
+
+    // --- Size formatting ---
+    function formatSize(bytes) {
+        if (bytes >= 1048576) return (bytes / 1048576).toFixed(1) + ' MB';
+        return (bytes / 1024).toFixed(1) + ' KB';
+    }
+
     // --- Conditional fetch bridge (called from Lua for HTTP cache) ---
     // Uses synchronous XHR to send If-None-Match / If-Modified-Since headers.
     // Returns { status, content, etag, lastModified } to Lua.
@@ -182,17 +191,21 @@
     // --- Main boot sequence ---
     async function boot() {
         try {
+            showStatus('Loading Bootstrapper (' + BUILD_TIMESTAMP + ')...');
+
             // Step 1: Fetch compressed engine bundle
             showStatus('Loading Game Engine...');
             var engineResponse = await fetchWithRetry('engine.lua.gz', 1);
             var compressedData = await engineResponse.arrayBuffer();
+            showStatus('Loading Game Engine... (' + formatSize(compressedData.byteLength) + ' compressed)');
 
             // Step 2: Decompress
             showStatus('Decompressing Engine...');
             var engineSource = await decompress(compressedData);
+            showStatus('Decompressing Engine... (' + formatSize(engineSource.length) + ')');
 
             // Step 3: Load engine into Fengari
-            showStatus('Initializing Fengari...');
+            showStatus('Initializing Fengari (' + BUILD_TIMESTAMP + ')...');
             var L = getLuaState();
             executeLua(L, engineSource, 'engine');
 
@@ -200,6 +213,7 @@
             showStatus('Loading Game Adapter...');
             var adapterResponse = await fetchWithRetry('game-adapter.lua', 1);
             var adapterSource = await adapterResponse.text();
+            showStatus('Loading Game Adapter... (' + formatSize(adapterSource.length) + ')');
             executeLua(L, adapterSource, 'game-adapter');
 
         } catch (err) {
