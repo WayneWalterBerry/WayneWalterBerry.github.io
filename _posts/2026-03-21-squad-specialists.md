@@ -89,6 +89,9 @@ Training an AI agent is remarkably similar to onboarding a new hire. You don't j
 
 In Squad, training looks like this:
 
+![Training an agent in Squad — asking the coordinator to train Flanders, and seeing how history.md becomes memory](/assets/images/squad-training-conversation.png)
+*Training Flanders: the coordinator explains how history.md IS the agent's memory.*
+
 1. **Spawn the agent** with their new charter
 2. **Point them at the relevant files** — "Read all existing object files. Read the core principles document. Read the material properties spec."
 3. **Let them write notes** — the agent reads everything, then writes 300-500 lines of organized knowledge into their `history.md`
@@ -112,6 +115,9 @@ Once you have 14 team members, you need organizational structure. I set up depar
 | ⚙️ Engineering | Bart | Bart, Frink, Nelson, Smithers | Engine code, research, system testing |
 | 📝 Docs | Brockman | Brockman | Documentation |
 | 📋 Operations | Chalmers | Chalmers, Scribe, Ralph | PM, logging, monitoring |
+
+![Squad team status board showing all 14 members organized by department](/assets/images/squad-team-status.png)
+*The full team status board — 14 specialists across 4 departments, each with clear ownership.*
 
 The most interesting decision? **Lisa (object tester) went to Design, not a separate QA department. Nelson (gameplay tester) went to Engineering.**
 
