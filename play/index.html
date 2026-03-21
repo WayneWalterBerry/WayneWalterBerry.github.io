@@ -114,7 +114,7 @@
     </div>
 
     <script>
-        // --- Boot log status messages ---
+        // --- Boot log: initial status message (before any other scripts load) ---
         (function() {
             var out = document.getElementById('output');
             window.logStatus = function(msg) {
@@ -128,83 +128,7 @@
         })();
     </script>
 
-    <script>window.logStatus("Loading Game Engine...");</script>
     <script src="https://cdn.jsdelivr.net/npm/fengari-web@0.1.4/dist/fengari-web.js"></script>
-    <script src="game-bundle.js"></script>
-    <script>
-        // --- Terminal UI (JavaScript side) ---
-        window.logStatus("Initializing Fengari...");
-
-        const outputEl = document.getElementById('output');
-        const inputEl  = document.getElementById('input');
-
-        // Append a line to the terminal output
-        function appendOutput(text, className) {
-            const div = document.createElement('div');
-            div.className = className || 'output-line';
-            if (!text && text !== 0) {
-                div.innerHTML = '&nbsp;';
-            } else {
-                div.textContent = String(text);
-            }
-            outputEl.appendChild(div);
-            outputEl.scrollTop = outputEl.scrollHeight;
-        }
-
-        // Expose to Lua adapter
-        window._appendOutput = appendOutput;
-        window._logStatus = function(msg) { window.logStatus(msg); };
-
-        // Command history (arrow-key recall)
-        const history = [];
-        let historyIndex = -1;
-
-        inputEl.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                const text = inputEl.value;
-                if (text.trim() === '') return;
-                inputEl.value = '';
-                history.push(text);
-                historyIndex = history.length;
-
-                // Echo command in output
-                appendOutput('> ' + text, 'input-echo');
-
-                // Send to Lua game engine
-                if (window._gameProcessCommand) {
-                    try {
-                        window._gameProcessCommand(text);
-                    } catch (err) {
-                        appendOutput('[Error: ' + err.message + ']', 'error-line');
-                        console.error(err);
-                    }
-                } else {
-                    appendOutput('[Game engine still loading...]', 'error-line');
-                }
-            } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                if (historyIndex > 0) {
-                    historyIndex--;
-                    inputEl.value = history[historyIndex];
-                }
-            } else if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                if (historyIndex < history.length - 1) {
-                    historyIndex++;
-                    inputEl.value = history[historyIndex];
-                } else {
-                    historyIndex = history.length;
-                    inputEl.value = '';
-                }
-            }
-        });
-
-        // Focus input on click anywhere in terminal
-        document.getElementById('terminal').addEventListener('click', function() {
-            inputEl.focus();
-        });
-    </script>
-
-    <script type="application/lua" src="game-adapter.lua"></script>
+    <script src="bootstrapper.js"></script>
 </body>
 </html>
