@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "I Hired 5 AI Specialists This Morning — Here's What Happened"
+title: "How I Built a 14-Person AI Team with GitHub Copilot and Squad"
 date: 2026-03-21
 categories: [ai, squad, development]
 tags: [squad, ai-agents, game-development, specialists]
-description: "How I built a 14-person AI development team with specialists, departments, and training — and what it produced in one morning."
+description: "How I built a 14-person AI development team using GitHub Copilot CLI and Squad — with specialists, departments, and training — and what it produced in one morning."
 ---
 
 *How building an AI game studio taught me that specialists beat generalists — even when they're language models.*
