@@ -21,7 +21,6 @@ local document = window.document
 
 local output_el  = document:getElementById("output")
 local input_el   = document:getElementById("input")
-local loading_el = document:getElementById("loading")
 
 ---------------------------------------------------------------------------
 -- DOM output helpers
@@ -32,6 +31,10 @@ end
 
 local function append_error(text)
     window:_appendOutput(text, "error-line")
+end
+
+local function log_status(msg)
+    window:_logStatus(msg)
 end
 
 ---------------------------------------------------------------------------
@@ -235,6 +238,7 @@ local ok, err = pcall(function()
     -------------------------------------------------------------------
     -- Load game data (mirrors main.lua initialization)
     -------------------------------------------------------------------
+    log_status("Loading Level 1...")
     local meta_root = "src/meta"
 
     local function read_file(path)
@@ -264,6 +268,7 @@ local ok, err = pcall(function()
     end
 
     -- Objects (base classes)
+    log_status("Loading Objects...")
     local object_sources = {}
     local base_classes = {}
     local object_dir = meta_root .. "/objects"
@@ -284,6 +289,7 @@ local ok, err = pcall(function()
     end
 
     -- Rooms
+    log_status("Loading Room: Bedroom...")
     local rooms = {}
     local room_dir = meta_root .. "/world"
     for _, fname in ipairs(list_lua_files(room_dir)) do
@@ -472,6 +478,7 @@ local ok, err = pcall(function()
     -------------------------------------------------------------------
     -- Start game loop in a coroutine
     -------------------------------------------------------------------
+    log_status("Starting Game...")
     game_co = coroutine.create(function()
         loop.run(context)
     end)
@@ -512,7 +519,7 @@ local ok, err = pcall(function()
     end
 
     -- Enable input
-    loading_el.className = "hidden"
+    log_status("Ready.")
     input_el.disabled = false
     input_el:focus()
     window._gameReady = true
@@ -521,6 +528,4 @@ end)
 if not ok then
     append_error("Failed to load game: " .. tostring(err))
     window.console:error(tostring(err))
-    loading_el.textContent = "Failed to load game engine."
-    loading_el.className = "error-line"
 end
