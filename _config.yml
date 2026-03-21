@@ -1,0 +1,14 @@
+title: "Wayne Walter Berry"
+description: "Thoughts on AI, software engineering, and building with agent teams"
+author: "Wayne Walter Berry"
+url: "https://WayneWalterBerry.github.io"
+baseurl: ""
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+header_pages:
+  - about.md
+show_excerpts: true
+minima:
+  skin: dark
