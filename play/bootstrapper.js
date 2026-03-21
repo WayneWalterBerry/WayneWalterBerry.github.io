@@ -31,7 +31,7 @@
     }
 
     // --- Build version (embedded at build time) ---
-    const BUILD_TIMESTAMP = "2026-03-21 10:28";
+    const BUILD_TIMESTAMP = "2026-03-21 10:38";
 
     // --- Size formatting ---
     function formatSize(bytes) {
@@ -60,6 +60,11 @@
     window.logStatus = showStatus;
     window._logStatus = showStatus;
     window._appendOutput = appendOutput;
+
+    // JS bridge: open URL in new tab (used by "report bug" command)
+    window._openUrl = function (url) {
+        window.open(url, '_blank');
+    };
 
     // --- Command history ---
     var history = [];
