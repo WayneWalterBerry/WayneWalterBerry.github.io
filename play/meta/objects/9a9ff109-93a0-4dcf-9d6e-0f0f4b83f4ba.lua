@@ -1,5 +1,6 @@
 return {
     guid = "9a9ff109-93a0-4dcf-9d6e-0f0f4b83f4ba",
+    template = "container",
     id = "chamber-pot",
     material = "ceramic",
     name = "a ceramic chamber pot",

@@ -1,6 +1,7 @@
 -- cloth-scraps.lua — Craftable material (Storage Cellar, inside small crate)
 return {
     guid = "7cb2e194-3d80-4a51-bf63-e8d1c5a40927",
+    template = "sheet",
 
     id = "cloth-scraps",
     material = "fabric",

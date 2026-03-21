@@ -2,6 +2,7 @@
 -- States: sealed → pried-open → broken (terminal)
 return {
     guid = "b7c3d1a2-4e5f-4890-ab12-cdef34567890",
+    template = "furniture",
 
     id = "large-crate",
     material = "wood",

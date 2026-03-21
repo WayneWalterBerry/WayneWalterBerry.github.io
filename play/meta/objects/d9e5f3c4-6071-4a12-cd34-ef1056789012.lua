@@ -2,6 +2,7 @@
 -- States: tied → untied (by hand) OR tied → cut-open (with knife)
 return {
     guid = "d9e5f3c4-6071-4a12-cd34-ef1056789012",
+    template = "container",
 
     id = "grain-sack",
     material = "burlap",

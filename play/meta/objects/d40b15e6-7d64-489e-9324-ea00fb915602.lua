@@ -19,6 +19,7 @@ end
 
 return {
     guid = "d40b15e6-7d64-489e-9324-ea00fb915602",
+    template = "furniture",
 
     id = "nightstand",
     material = "oak",

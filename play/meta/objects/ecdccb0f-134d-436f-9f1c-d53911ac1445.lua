@@ -1,5 +1,6 @@
 return {
     guid = "ecdccb0f-134d-436f-9f1c-d53911ac1445",
+    template = "sheet",
     id = "wool-cloak",
     name = "a moth-eaten wool cloak",
     keywords = {"cloak", "wool cloak", "cape", "mantle", "garment", "wool"},

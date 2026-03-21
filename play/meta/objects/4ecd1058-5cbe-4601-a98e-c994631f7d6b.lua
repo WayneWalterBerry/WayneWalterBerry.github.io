@@ -2,6 +2,7 @@
 -- States: closed <-> open (reversible)
 return {
     guid = "4ecd1058-5cbe-4601-a98e-c994631f7d6b",
+    template = "furniture",
     id = "window",
     material = "glass",
     keywords = {"window", "glass", "pane", "leaded glass"},

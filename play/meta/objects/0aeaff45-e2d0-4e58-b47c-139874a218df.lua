@@ -3,6 +3,7 @@
 -- The candle is a detachable child — like drawer from nightstand, cork from bottle.
 return {
     guid = "0aeaff45-e2d0-4e58-b47c-139874a218df",
+    template = "small-item",
 
     id = "candle-holder",
     keywords = {"candle holder", "holder", "candlestick", "sconce", "brass holder"},

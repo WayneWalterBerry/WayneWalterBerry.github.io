@@ -3,6 +3,7 @@
 -- Timer: burn_duration tracks total burn time; remaining_burn tracks partial.
 return {
     guid = "992df7f3-1b8e-4164-939a-3415f8f6ffe3",
+    template = "small-item",
 
     id = "candle",
     material = "wax",

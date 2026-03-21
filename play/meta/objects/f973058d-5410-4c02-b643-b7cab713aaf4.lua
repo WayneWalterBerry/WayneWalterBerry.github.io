@@ -1,5 +1,6 @@
 return {
     guid = "f973058d-5410-4c02-b643-b7cab713aaf4",
+    template = "sheet",
     id = "pillow",
     name = "a goose-down pillow",
     keywords = {"pillow", "cushion", "down pillow", "goose down"},
