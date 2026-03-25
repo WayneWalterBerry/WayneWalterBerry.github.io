@@ -48,7 +48,7 @@ local function log_debug(msg)
 end
 
 -- Build version (embedded at build time)
-local BUILD_TIMESTAMP = "2026-03-25 13:21"
+local BUILD_TIMESTAMP = "2026-03-25 07:22"
 
 local function format_size(bytes)
     if bytes >= 1048576 then
@@ -339,10 +339,17 @@ local ok, err = pcall(function()
     -------------------------------------------------------------------
     log_debug("Loading Materials...")
     local materials_mod = require("engine.materials")
-    local index_src = fetch_text("meta/_index.lua")
+    local index_src, index_cached, index_err = fetch_text("meta/_index.lua")
     local mat_count = 0
+    if not index_src then
+        log_debug("  WARNING: meta/_index.lua fetch failed" ..
+            (index_err and (": " .. index_err) or " (nil response)"))
+    end
     if index_src then
-        local index = loader.load_source(index_src)
+        local index, idx_err = loader.load_source(index_src)
+        if not index then
+            log_debug("  WARNING: _index.lua parse failed: " .. tostring(idx_err))
+        end
         if index and index.materials then
             for _, name in ipairs(index.materials) do
                 local mat_src = fetch_text("meta/materials/" .. name .. ".lua")
