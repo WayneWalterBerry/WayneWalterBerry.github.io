@@ -376,7 +376,6 @@
         }
 
         try {
-            // Check IndexedDB cache first (keyed by build timestamp)
             var cacheKey = 'slm-v-' + CACHE_BUST;
             var cached = await getFromIndexedDB(cacheKey);
             if (cached) {
@@ -387,7 +386,6 @@
                 return;
             }
 
-            // Fetch compressed vectors
             var response = await fetch('embedding-vectors.json.gz?v=' + CACHE_BUST);
             if (!response.ok) {
                 if (window._debugMode) {
@@ -405,7 +403,6 @@
             var data = JSON.parse(jsonText);
             window._slmVectors = data;
 
-            // Cache in IndexedDB for next load
             await storeInIndexedDB(cacheKey, data);
 
             if (window._debugMode) {
@@ -413,7 +410,7 @@
             }
         } catch (err) {
             if (window._debugMode) {
-                showStatus('SLM vectors: error \u2014 ' + err.message);
+                showStatus('SLM vectors: error — ' + err.message);
             }
             console.error('SLM lazy-load error:', err);
         }
