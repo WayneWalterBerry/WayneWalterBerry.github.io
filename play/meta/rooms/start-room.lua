@@ -61,6 +61,7 @@ return {
         -- === Vanity ===
         { id = "vanity", type = "Oak Vanity", type_id = "eda1257d-8240-4c75-9c1b-a7be349a60f5",
             on_top = {
+                { id = "mirror", type = "Mirror", type_id = "1b47a68e-33a7-4d27-8065-4bc94b8f149f" },
                 { id = "paper", type = "Paper", type_id = "e7409390-d4c4-4315-9768-72df1b3702e6" },
                 { id = "pen", type = "Pen", type_id = "4d35b030-0b8c-4159-b646-d669909133a3" },
             },
@@ -72,7 +73,7 @@ return {
         -- === Wardrobe ===
         { id = "wardrobe", type = "Wardrobe", type_id = "9c4701d1-4cc4-49e7-9c4a-041e1e37caf1",
             contents = {
-                { id = "wool-cloak", type = "Wool Cloak", type_id = "ecdccb0f-134d-436f-9f1c-d53911ac1445" },
+                { id = "trousers", type = "Moth-Eaten Trousers", type_id = "3c75a0cc-0b60-458b-a533-7ec1c48da76a" },
                 { id = "sack", type = "Sack", type_id = "4720ace5-baed-4133-b5db-977257f5b680",
                     contents = {
                         { id = "needle", type = "Needle", type_id = "07b9daaf-ee36-408e-8c66-d794bc175ed1" },
