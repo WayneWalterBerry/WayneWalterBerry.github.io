@@ -5,11 +5,8 @@ return {
     template = "furniture",
     id = "window",
     material = "glass",
-    keywords = {"window", "glass window", "pane", "leaded glass"},
+    keywords = {"window frame", "window sill", "leaded pane", "diamond pane"},
     room_presence = "A tall leaded glass window is set deep in the stone of the far wall.",
-
-    linked_exit = "window",
-    linked_passage_id = "bedroom-courtyard-window",
 
     on_feel = "Cold glass pane, thick and uneven. Lead strips divide it into diamond shapes. An iron latch holds it shut.",
     on_listen = "Faint sounds from outside -- muffled by glass. Wind, maybe. A distant city, maybe.",
@@ -21,9 +18,6 @@ return {
     portable = false,
     container = false,
     allows_daylight = true,
-
-    linked_exit = "window",
-    linked_passage_id = "bedroom-courtyard-window",
 
     location = nil,
 

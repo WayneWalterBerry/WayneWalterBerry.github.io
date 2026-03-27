@@ -5,6 +5,7 @@ return {
     id = "storage-cellar",
     name = "The Storage Cellar",
     level = { number = 1, name = "The Awakening" },
+    sky_visible = false,
     keywords = {"storage", "cellar", "vault", "pantry", "provisions", "storage cellar"},
     description = "A long, narrow vault stretches before you, its barrel-vaulted ceiling disappearing into shadow at both ends. Heavy oak shelves line both walls from floor to ceiling, most sagging under the weight of years. Dust covers everything — the flagstone floor, the collapsed crates, the remnants of rope and sacking scattered like shed skin. The air tastes of old wood, stale grain, and the sweet-sour tang of decay. Something scurries in the darkness beyond the reach of your light.",
     short_description = "A dusty storage vault with sagging shelves and the sound of rats.",
@@ -49,103 +50,13 @@ return {
         { id = "crowbar",       type = "Crowbar",        type_id = "b30076fe-7931-4089-8ea2-2cac139b022c" },
         { id = "oil-flask",     type = "Oil Flask",      type_id = "ae5df831-7c42-4b19-8e60-f9a3c7d21b54" },
         { id = "brass-spittoon", type = "Brass Spittoon", type_id = "{b763fdf9-f7d2-4eac-8952-7c03771c5013}" },
+        { id = "storage-cellar-door-south", type_id = "{ed35641e-4106-421f-bcd4-2d6654c8ed1b}" },
+        { id = "storage-deep-cellar-door-north", type_id = "{f7c36726-24ef-427d-bcb5-267cab725982}" },
     },
 
     exits = {
-        south = {
-            target = "cellar",
-            type = "door",
-            passage_id = "cellar-storage-door",
-            name = "the iron-bound door",
-            keywords = {"door", "iron door", "south door", "iron-bound door"},
-            description = "The heavy iron-bound door stands open behind you, revealing the cellar stairway beyond.",
-
-            max_carry_size = 4,
-            max_carry_weight = 50,
-            requires_hands_free = false,
-            player_max_size = 5,
-
-            open = true,
-            locked = false,
-            hidden = false,
-            broken = false,
-            one_way = false,
-
-            mutations = {
-                close = {
-                    becomes_exit = {
-                        open = false,
-                        description = "The heavy iron-bound door is shut, its iron bands dark against the oak.",
-                    },
-                    message = "You push the heavy door shut. It closes with a deep, resonant thud.",
-                },
-                open = {
-                    becomes_exit = {
-                        open = true,
-                        description = "The heavy iron-bound door stands open, revealing the cellar stairway beyond.",
-                    },
-                    message = "The door groans open on protesting hinges.",
-                },
-            },
-        },
-
-        north = {
-            target = "deep-cellar",
-            type = "door",
-            passage_id = "storage-deep-door",
-            name = "a second iron-bound door",
-            keywords = {"door", "iron door", "north door", "heavy door", "second door"},
-            description = "A second iron-bound door blocks the north end of the vault. This one is different — heavier, older, with a lock plate of black iron. A large keyhole waits, dark and empty.",
-            on_feel = "Cold iron bands over oak. Heavier than the door behind you. The keyhole is large — meant for an iron key, not the delicate brass one. The door does not yield to pushing.",
-
-            max_carry_size = 4,
-            max_carry_weight = 50,
-            requires_hands_free = false,
-            player_max_size = 5,
-
-            open = false,
-            locked = true,
-            key_id = "iron-key",
-            hidden = false,
-            broken = false,
-            one_way = false,
-            breakable = false,
-
-            mutations = {
-                unlock = {
-                    requires = "iron-key",
-                    becomes_exit = {
-                        locked = false,
-                        description = "The iron-bound door stands unlocked, its heavy lock plate hanging loose.",
-                    },
-                    message = "The iron key turns with a grinding reluctance, and the lock plate falls open with a heavy clank.",
-                },
-                open = {
-                    condition = function(self) return not self.locked end,
-                    becomes_exit = {
-                        open = true,
-                        description = "The iron door stands open, revealing a passage into older, darker stone beyond.",
-                    },
-                    message = "You put your shoulder to the door. It yields slowly, grinding against the flagstones, and swings open into darkness.",
-                },
-                close = {
-                    becomes_exit = {
-                        open = false,
-                        description = "The iron-bound door is closed. Its black lock plate stares at you like an empty eye socket.",
-                    },
-                    message = "You heave the door shut. It closes with a boom that echoes through the vault.",
-                },
-                lock = {
-                    requires = "iron-key",
-                    becomes_exit = {
-                        open = false,
-                        locked = true,
-                        description = "A second iron-bound door blocks the north end of the vault. The lock plate is engaged, the keyhole dark and empty.",
-                    },
-                    message = "You turn the iron key. The lock engages with a heavy, final sound.",
-                },
-            },
-        },
+        south = { portal = "storage-cellar-door-south" },
+        north = { portal = "storage-deep-cellar-door-north" },
     },
 
     on_enter = function(self)

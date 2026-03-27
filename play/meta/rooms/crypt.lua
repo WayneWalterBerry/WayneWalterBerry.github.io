@@ -5,6 +5,7 @@ return {
     id = "crypt",
     name = "The Crypt",
     level = { number = 1, name = "The Awakening" },
+    sky_visible = false,
     keywords = {"crypt", "tomb", "burial", "burial chamber", "vault", "catacomb"},
     description = "Five stone coffins line the walls of a narrow vault carved from the living rock. Their lids bear the carved likenesses of robed figures, hands folded over chests that will never rise again, faces worn smooth by time until they are almost featureless. Small niches are cut into the walls between the tombs, some holding candle stubs burned down to waxy puddles, others empty. The air is perfectly still, cold, and dry — the kind of stillness that comes from being sealed away from the world for centuries. Dust motes hang motionless in your light. Inscriptions cover every available surface — names, dates, prayers, and symbols that repeat like a chorus.",
     short_description = "A silent vault of five stone coffins and ancient inscriptions.",
@@ -60,28 +61,12 @@ return {
 
         -- Wall inscription (east wall, back of crypt)
         { id = "wall-inscription", type = "Wall Inscription",  type_id = "959a08fd-057e-4cf6-b80e-c419d184bcc1" },
+        { id = "crypt-deep-cellar-archway-east", type_id = "{d9124959-350d-4172-9844-d6d390461dd5}" },
+        { id = "crypt-bat", type_id = "{52e32931-84dc-4a3d-a2cf-04cf79d61f4c}" },
     },
 
     exits = {
-        west = {
-            target = "deep-cellar",
-            type = "archway",
-            passage_id = "deep-cellar-crypt-archway",
-            name = "the stone archway",
-            keywords = {"archway", "arch", "gate", "exit", "west", "passage", "way out"},
-            description = "The stone archway leads back to the deep cellar. The iron gate stands open, its silver padlock hanging loose. Beyond it, the vaulted chamber with its altar and stairway waits.",
-
-            max_carry_size = 3,
-            max_carry_weight = 30,
-            requires_hands_free = false,
-            player_max_size = 5,
-
-            open = true,
-            locked = false,
-            hidden = false,
-            broken = false,
-            one_way = false,
-        },
+        east = { portal = "crypt-deep-cellar-archway-east" },
     },
 
     on_enter = function(self)
