@@ -48,7 +48,7 @@ local function log_debug(msg)
 end
 
 -- Build version (embedded at build time)
-local BUILD_TIMESTAMP = "2026-03-29 13:02"
+local BUILD_TIMESTAMP = "2026-03-29 13:27"
 local BUILD_VERSION = "1d80a60"
 
 local function format_size(bytes)
