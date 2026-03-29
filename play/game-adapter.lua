@@ -48,8 +48,8 @@ local function log_debug(msg)
 end
 
 -- Build version (embedded at build time)
-local BUILD_TIMESTAMP = "2026-03-29 19:00"
-local BUILD_VERSION = "b736232"
+local BUILD_TIMESTAMP = "2026-03-29 12:06"
+local BUILD_VERSION = "7d0f919"
 
 local function format_size(bytes)
     if bytes >= 1048576 then
@@ -792,6 +792,8 @@ local ok, err = pcall(function()
     -------------------------------------------------------------------
     -- Expose command handler to JavaScript
     -------------------------------------------------------------------
+    local _first_input_done = false
+
     window._gameProcessCommand = function(a, b)
         local text
         if b ~= nil then
@@ -812,6 +814,13 @@ local ok, err = pcall(function()
             local co_ok, co_err = coroutine.resume(game_co, text)
             if not co_ok then
                 append_error("Error: " .. tostring(co_err))
+            end
+            -- After the first user input, trigger the starting room ambient.
+            -- Deferred to here so the AudioContext is unlocked (user just
+            -- interacted) — playing at game load would be blocked by browsers.
+            if not _first_input_done then
+                _first_input_done = true
+                sm:enter_room(context.current_room)
             end
             -- Refresh status bar after each command
             context.update_status(context)
