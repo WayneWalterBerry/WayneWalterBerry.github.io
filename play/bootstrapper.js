@@ -158,8 +158,8 @@
     }
 
     // --- Build version (embedded at build time) ---
-    const BUILD_TIMESTAMP = "2026-03-29 07:30";
-    const CACHE_BUST = "20260329073052";
+    const BUILD_TIMESTAMP = "2026-03-29 14:32";
+    const CACHE_BUST = "20260329143225";
     const BUILD_VERSION = "6da0ff6";
 
     // --- Size formatting ---
