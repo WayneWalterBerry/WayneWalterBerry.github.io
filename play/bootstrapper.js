@@ -6,11 +6,16 @@
 (function () {
     'use strict';
 
-    // --- URL parameters: ?debug and ?room={id} ---
+    // --- URL parameters: ?debug, ?room={id}, ?world={id} ---
     var _urlParams = new URLSearchParams(window.location.search);
     window._debugMode = _urlParams.has('debug');
     window._startRoom = _urlParams.get('room') || null;
+    window._selectedWorld = _urlParams.get('world') || null;
 
+    // Always log world selection to console for debugging (#world-url-bug)
+    if (window._selectedWorld) {
+        console.log('[world] Selected world: ' + window._selectedWorld);
+    }
     if (window._debugMode && window._startRoom) {
         console.log('Starting in room: ' + window._startRoom + ' (via URL override)');
     }
@@ -158,9 +163,9 @@
     }
 
     // --- Build version (embedded at build time) ---
-    const BUILD_TIMESTAMP = "2026-03-29 13:27";
-    const CACHE_BUST = "20260329132709";
-    const BUILD_VERSION = "1d80a60";
+    const BUILD_TIMESTAMP = "2026-03-29 21:00";
+    const CACHE_BUST = "20260329210044";
+    const BUILD_VERSION = "938ac33";
 
     // --- Size formatting ---
     function formatSize(bytes) {
