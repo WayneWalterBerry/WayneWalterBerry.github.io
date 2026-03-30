@@ -49,7 +49,7 @@ end
 
 -- Build version (embedded at build time)
 local BUILD_TIMESTAMP = "2026-03-30 04:33"
-local BUILD_VERSION = "8c47320"
+local BUILD_VERSION = "e69a13b"
 
 local function format_size(bytes)
     if bytes >= 1048576 then
